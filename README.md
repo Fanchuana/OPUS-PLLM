@@ -1,0 +1,1 @@
+Contrastive Protein Sequence-Text Pretraining, Mapping Protein Sequence to text space
