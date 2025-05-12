@@ -24,15 +24,7 @@ def eval_model(args):
 
     # Begin interactive loop
     while True:
-        mode = input("Enter mode: Annotation for 1, Chat for 2:")
-        print(mode)
-        if mode == '1':
-            conv = conv_vicuna_v1.copy()
-            mode = 'Annotation'
-        else:
-            conv = conv_vicuna_v0.copy()
-            mode = 'Chat'
-
+        conv = conv_vicuna_v0.copy()
         instruction = input("Enter your instruction: ")
         while True:
             seq = input("Enter the protein sequence (or leave empty to skip): ").strip()
@@ -42,7 +34,6 @@ def eval_model(args):
             else:
                 print(
                     "Invalid sequence!")
-
         conv.tokenizer = tokenizer
         conv.append_message('system', conv.system)
         if len(seq) == 0:
@@ -95,10 +86,10 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument("--model-base-path", type=str, default="facebook/opt-350m")
     parser.add_argument("--adapter-path", type=str, default=None)
-    parser.add_argument("--temperature", type=float, default=0.3)
+    parser.add_argument("--temperature", type=float, default=0.1)
     parser.add_argument("--top_p", type=float, default=0.8)
     parser.add_argument("--num_beams", type=int, default=3)
-    parser.add_argument("--max_new_tokens", type=int, default=256)
+    parser.add_argument("--max_new_tokens", type=int, default=512)
     parser.add_argument("--load-4bit", type=bool, default=False)
     parser.add_argument("--load-8bit", type=bool, default=False)
     parser.add_argument("--switch_projector_type", type=str, default='mlp2x_gelu')

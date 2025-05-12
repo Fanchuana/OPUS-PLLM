@@ -34,7 +34,7 @@ def load_pretrained_model(
     **kwargs
 ):
     model_args.pretrain_protein_projector_ckpt = cstp_path
-    kwargs['device_map'] = "auto" if accelerator is None else {"": accelerator.process_index}
+    kwargs['device_map'] = "cuda:0" if accelerator is None else {"": accelerator.process_index}
     model_args.switch_projector_type = switch_projector_type
     # Set up quantization configuration
     quantization_config = None
