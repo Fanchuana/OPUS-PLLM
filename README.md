@@ -53,22 +53,24 @@ export PYTHONPATH=/path/to/OPUS_PLLM/
 
 ## Dataset and Model Weight
 
-As mentioned in the article, we have open-sourced two versions of the dataset for training:  Uniprot-Instruct and its Evol version.
+As mentioned in the article, we have open-sourced two versions of the dataset for training:  OPUS-InstructionCorpus and OPUS-InstructionCorpus-Evol.
 
-Both are available for download [here]([YaoYao12138/OpusLlama · Hugging Face](https://huggingface.co/YaoYao12138/OpusLlama)) 👈.  
+Both two versions of training data are available for download through our Huggingface🤗 training dataset repos [OPUS-InstructionCorpus]([YifanXu24/OPUS-InstructionCorpus · Datasets at Hugging Face](https://huggingface.co/datasets/YifanXu24/OPUS-InstructionCorpus)) 👈 and [OPUS-InstructionCorpus-Evol]([YifanXu24/OPUS-InstructionCorpus-Evol · Datasets at Hugging Face](https://huggingface.co/datasets/YifanXu24/OPUS-InstructionCorpus-Evol)) 👈.  
 
-Also, 17 test datasets of our benchmark are all open-sourced [here]([YaoYao12138/OpusLlama · Hugging Face](https://huggingface.co/YaoYao12138/OpusLlama)) 👈.  We gratefully acknowledge the teams that contributed the original test sets(OPI-team, Clean-team, Deeploc-team).
+Also, 17 test datasets of our benchmark are all open-sourced [here]([YifanXu24/OPUS-InstructionCorpus-Benchmark · Hugging Face](https://huggingface.co/YifanXu24/OPUS-InstructionCorpus-Benchmark)) 👈.  We gratefully acknowledge the teams that contributed some parts of the original test sets(OPI-team, Clean-team, Deeploc-team).
 
 ## Steps to Reproduce the Inference Result 
 
 - At first, please ensure you have prepared all the prerequisite environments as specified in the **Dependencies** section. If not, please follow the instructions step by step in the **Dependencies** section.
-- Download the corresponding test sets from our 🤗  [Hugging Face Repo]([YaoYao12138/OpusLlama · Hugging Face](https://huggingface.co/YaoYao12138/OpusLlama))  and maintain their original name. The naming of the test dataset will affect how the automatic metrics are calculated. Specifically, test sets containing **"GO"** in their names will be processed through a dedicated pipeline that calculates **precision**, **recall**, and **F1 score** between the generated text and ground truth. The same applies to the others.
+- Download the corresponding test sets from our 🤗  [Hugging Face Repo]([YifanXu24/OPUS-InstructionCorpus-Benchmark · Hugging Face](https://huggingface.co/YifanXu24/OPUS-InstructionCorpus-Benchmark))  and maintain their original name. The naming of the test dataset will affect how the automatic metrics are calculated. Specifically, test sets containing **"GO"** in their names will be processed through a dedicated pipeline that calculates **precision**, **recall**, and **F1 score** between the generated text and ground truth. The same applies to the others.
 
-If you wish to experience Opus-PLLM's efficient and accurate protein annotation capabilities, or to evaluate its performance on our provided functional annotation benchmark, please follow these steps:
+If you wish to experience OPUS-PLLM's efficient and accurate protein annotation capabilities, or to evaluate its performance on our provided functional annotation benchmark, please follow these steps:
 
-- Download the Base Model Weights and its corresponding Lora weights, Switch Projector Weights and Cross-Modal Adapter Weights. Base Model Weights can be downloaded from their official 🤗 Hugging Face Repo. Others can be downloaded on our 🤗 Hugging Face Repo. We have provided the corresponding repository URLs in **Model Zoo** Section, please select the appropriate pairing scheme.
-- For example, if you choose to validate annotation model with llama3-8B, you can download llama3-8B-Base from [here]([YaoYao12138/OpusLlama · Hugging Face](https://huggingface.co/YaoYao12138/OpusLlama)) 👈. Then, download its corresponding Lora weights, Switch Projector Weights and Cross-Modal Adapter Weights from [here]([YaoYao12138/OpusLlama · Hugging Face](https://huggingface.co/YaoYao12138/OpusLlama)) 👈.
+- Download the Base Model Weights and its corresponding Lora weights, Switch Projector Weights and Cross-Modal Adapter Weights. Base Model Weights can be downloaded from their official 🤗 Hugging Face Repo. Others can be downloaded on our 🤗 Hugging Face Repo. We have provided the corresponding repository URLs in [Model Zoo](#zoo)🦒🏛️  Section, please select the appropriate pairing scheme.
+- For example, if you choose to validate annotation model with llama3-8B🐪, you can download llama3-8B-Base from [here](https://huggingface.co/meta-llama/Meta-Llama-3-8B) 👈. Then, download its corresponding Lora weights, Switch Projector Weights and Cross-Modal Adapter Weights from [here](https://huggingface.co/YifanXu24/OPUS-PLLM-Llama3-8B-Base) 👈.
 - Navigate to the inference path: `OPUS-PLLM/multi_modality_model/multi_modality_v1/eval/`, and you can reproduce results by running:
+
+
 
 #### For Batch Annotation:
 
@@ -95,11 +97,11 @@ python run_opus_online.py  \
 --cstp_path /path/to/cstp
 ```
 
-- In this case, you will use Opus-PLLM for protein function annotation in an interactive, single-turn dialogue-like manner directly in the terminal. Specifically, terminal will hint you **"Enter your instruction:"** that requires one instruction and **"Enter the protein sequence (or leave empty to skip):"** that requires one protein sequence as input. For example, we can use case for instruction like **"Given a protein sequence, predict the corresponding Gene Ontology term that describes its molecular function, biological process, and cellular component."** and protein sequence like "MPYFAQRLYNTCKASFSSDGPITEDALEKVRNVLEKIKPSDVGIEQDAQLARSRSGPLNERNGSNQSPPAIKYLHLHECDSFSIGIFCMPPSSMIPLHNHPGMTVLSKLVYGSMHVKSYDWLEPQLTEPEDPSQARPAKLVKDTEMTAQSPVTTLYPKSGGNIHCFKAITHCAILDILAPPYSSEHDRHCTYFRKSRREDLPGELEVDGEVVTDVTWLEEFQPPDDFVIRRIPYRGPVIRT". The model will output the result with **"cytosol; nucleus; cysteine dioxygenase activity; iron ion binding; cellular response to hypoxia; detection of hypoxia; response to hypoxia"**.
+- In this case, you will use OPUS-PLLM for protein function annotation in an interactive, single-turn dialogue-like manner directly in the terminal. Specifically, terminal will hint you **"Enter your instruction:"** that requires one instruction and **"Enter the protein sequence (or leave empty to skip):"** that requires one protein sequence as input. For example, we can use case for instruction like **"Given a protein sequence, predict the corresponding Gene Ontology term that describes its molecular function, biological process, and cellular component."** and protein sequence like "MPYFAQRLYNTCKASFSSDGPITEDALEKVRNVLEKIKPSDVGIEQDAQLARSRSGPLNERNGSNQSPPAIKYLHLHECDSFSIGIFCMPPSSMIPLHNHPGMTVLSKLVYGSMHVKSYDWLEPQLTEPEDPSQARPAKLVKDTEMTAQSPVTTLYPKSGGNIHCFKAITHCAILDILAPPYSSEHDRHCTYFRKSRREDLPGELEVDGEVVTDVTWLEEFQPPDDFVIRRIPYRGPVIRT". The model will output the result with **"cytosol; nucleus; cysteine dioxygenase activity; iron ion binding; cellular response to hypoxia; detection of hypoxia; response to hypoxia"**.
 
-If you want to experience the Opus-PLLM-Evol's ability to solve protein-sequence-centered interactive capabilities in conversational mode, or verify its performance on our provided MCQ benchmark, please first select the model in **Model Zoo** and download the corresponding module weights using the same method described above.
+If you want to experience the OPUS-PLLM-Evol's ability to solve protein-sequence-centered interactive capabilities in conversational mode, or verify its performance on our provided MCQ benchmark, please first select the model in **[Model Zoo](#zoo)🦒🏛️** and download the corresponding module weights using the same method described above.
 
-- For example, if you choose to experience the Opus-PLLM-Evol with llama3-8B-Instruct, you can download llama3-8B-Instruct from [here]([YaoYao12138/OpusLlama · Hugging Face](https://huggingface.co/YaoYao12138/OpusLlama)) 👈. Then, download its corresponding Lora weights, Switch Projector Weights and Cross-Modal Adapter Weights from [here]([YaoYao12138/OpusLlama · Hugging Face](https://huggingface.co/YaoYao12138/OpusLlama)) 👈.
+- For example, if you choose to experience the OPUS-PLLM-Evol with llama3-8B-Instruct🐪, you can download llama3-8B-Instruct from [here](https://huggingface.co/meta-llama/Meta-Llama-3-8B-Instruct) 👈. Then, download its corresponding Lora weights, Switch Projector Weights and Cross-Modal Adapter Weights from [here](https://huggingface.co/YifanXu24/OPUS-PLLM-Llama3-8B-Evol) 👈.
 - Navigate to the inference path: `OPUS-PLLM/multi_modality_model/multi_modality_v1/eval/`, and you can reproduce results by running:
 
 #### For Batch MCQ Inference:
@@ -130,21 +132,21 @@ python eval_run_online.py  \
 
 
 
-## Model Zoo
+## Model Zoo🦒🏛️{#zoo}
 
-Here is the list of different module versions of Opus-PLLM. The deployment of Opus-PLLM requires weight files from four components: **Base Model Weight**, **corresponding LoRA weights**, **Switch Projector Weights**, and **Cross-Modal Adapter Weights**. Among these, the **Cross-Modal Adapter Weights** are universal and can be downloaded [here]([YaoYao12138/OpusLlama · Hugging Face](https://huggingface.co/YaoYao12138/OpusLlama)) 👈, while the other three must be mutually compatible.
+Here is the list of different module versions of OPUS-PLLM. The deployment of OPUS-PLLM requires weight files from four components: **Base Model Weight**, **corresponding LoRA weights**, **Switch Projector Weights**, and **Cross-Modal Adapter Weights**. Among these, the **Cross-Modal Adapter Weights** are universal and can be downloaded [here]([YaoYao12138/OpusLlama · Hugging Face](https://huggingface.co/YaoYao12138/OpusLlama)) 👈, while the other three must be mutually compatible.
 
 We provide four sets of model weights:
 
-- **Llama3-8B-Base**, **Galactica-6.7B**, and **Galactica-1.3B** serve as the foundation for **Opus-PLLM**, specializing in **annotation tasks**.
-- **Llama3-8B-Instruct** acts as the base for **Opus-PLLM-Evol**, designed for **diverse and complex daily interactions** with enhanced **instruction-following capabilities**.
+- **Llama3-8B-Base**, **Galactica-6.7B**, and **Galactica-1.3B** serve as the foundation for **OPUS-PLLM**, specializing in **annotation tasks**.
+- **Llama3-8B-Instruct** acts as the base for **OPUS-PLLM-Evol**, designed for **diverse and complex daily interactions** with enhanced **instruction-following capabilities**.
 
 |        Model name        | Model_Type |                          Base Model                          |                  LoRA and Switch Projector                   |
 | :----------------------: | :--------: | :----------------------------------------------------------: | :----------------------------------------------------------: |
-| OPUS-PLLM-Llama3-8B-Base |    Base    | [Meta-Llama-3-8B](https://huggingface.co/meta-llama/Meta-Llama-3-8B) | [Link🤗](https://huggingface.co/YifanXu24/OPUS-PLLM-Llama3-8B-Base) |
-| OPUS-PLLM-Galactica-1.3B |    Base    | [Galactica-1.3B](https://huggingface.co/facebook/galactica-1.3b) | [Link🤗](https://huggingface.co/YifanXu24/OPUS-PLLM-Galactica-1.3B-Base) |
-| OPUS-PLLM-Galactica-6.7B |    Base    | [Galactica-6.7B](https://huggingface.co/facebook/galactica-6.7b) | [Link🤗](https://huggingface.co/YifanXu24/OPUS-PLLM-Galactica-6.7B-Base) |
-| OPUS-PLLM-Llama3-8B-Evol |    Evol    | [Meta-Llama-3-8B-Instruct](https://huggingface.co/meta-llama/Meta-Llama-3-8B-Instruct) | [Link🤗](https://huggingface.co/YifanXu24/OPUS-PLLM-Llama3-8B-Evol) |
+| OPUS-PLLM-Llama3-8B-Base |    Base    | [Meta-Llama-3-8B](https://huggingface.co/meta-llama/Meta-Llama-3-8B)🐪 | [Link🤗](https://huggingface.co/YifanXu24/OPUS-PLLM-Llama3-8B-Base) |
+| OPUS-PLLM-Galactica-1.3B |    Base    | [Galactica-1.3B](https://huggingface.co/facebook/galactica-1.3b)🌌 | [Link🤗](https://huggingface.co/YifanXu24/OPUS-PLLM-Galactica-1.3B-Base) |
+| OPUS-PLLM-Galactica-6.7B |    Base    | [Galactica-6.7B](https://huggingface.co/facebook/galactica-6.7b)🌌 | [Link🤗](https://huggingface.co/YifanXu24/OPUS-PLLM-Galactica-6.7B-Base) |
+| OPUS-PLLM-Llama3-8B-Evol |    Evol    | [Meta-Llama-3-8B-Instruct](https://huggingface.co/meta-llama/Meta-Llama-3-8B-Instruct)🐪 | [Link🤗](https://huggingface.co/YifanXu24/OPUS-PLLM-Llama3-8B-Evol) |
 
 
 
