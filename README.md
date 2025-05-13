@@ -55,14 +55,14 @@ export PYTHONPATH=/path/to/OPUS_PLLM/
 
 As mentioned in the article, we have open-sourced two versions of the dataset for training:  OPUS-InstructionCorpus and OPUS-InstructionCorpus-Evol.
 
-Both two versions of training data are available for download through our Huggingface🤗 training dataset repos [OPUS-InstructionCorpus]([YifanXu24/OPUS-InstructionCorpus · Datasets at Hugging Face](https://huggingface.co/datasets/YifanXu24/OPUS-InstructionCorpus)) 👈 and [OPUS-InstructionCorpus-Evol]([YifanXu24/OPUS-InstructionCorpus-Evol · Datasets at Hugging Face](https://huggingface.co/datasets/YifanXu24/OPUS-InstructionCorpus-Evol)) 👈.  
+Both two versions of training data are available for download through our Huggingface🤗 training dataset repos [OPUS-InstructionCorpus](https://huggingface.co/datasets/YifanXu24/OPUS-InstructionCorpus) 👈 and [OPUS-InstructionCorpus-Evol](https://huggingface.co/datasets/YifanXu24/OPUS-InstructionCorpus-Evol) 👈.  
 
 Also, 17 test datasets of our benchmark are all open-sourced [here]([YifanXu24/OPUS-InstructionCorpus-Benchmark · Hugging Face](https://huggingface.co/YifanXu24/OPUS-InstructionCorpus-Benchmark)) 👈.  We gratefully acknowledge the teams that contributed some parts of the original test sets(OPI-team, Clean-team, Deeploc-team).
 
 ## Steps to Reproduce the Inference Result 
 
 - At first, please ensure you have prepared all the prerequisite environments as specified in the **Dependencies** section. If not, please follow the instructions step by step in the **Dependencies** section.
-- Download the corresponding test sets from our 🤗  [Hugging Face Repo]([YifanXu24/OPUS-InstructionCorpus-Benchmark · Hugging Face](https://huggingface.co/YifanXu24/OPUS-InstructionCorpus-Benchmark))  and maintain their original name. The naming of the test dataset will affect how the automatic metrics are calculated. Specifically, test sets containing **"GO"** in their names will be processed through a dedicated pipeline that calculates **precision**, **recall**, and **F1 score** between the generated text and ground truth. The same applies to the others.
+- Download the corresponding test sets from our 🤗  [Hugging Face Repo](https://huggingface.co/YifanXu24/OPUS-InstructionCorpus-Benchmark)  and maintain their original name. The naming of the test dataset will affect how the automatic metrics are calculated. Specifically, test sets containing **"GO"** in their names will be processed through a dedicated pipeline that calculates **precision**, **recall**, and **F1 score** between the generated text and ground truth. The same applies to the others.
 
 If you wish to experience OPUS-PLLM's efficient and accurate protein annotation capabilities, or to evaluate its performance on our provided functional annotation benchmark, please follow these steps:
 
@@ -134,7 +134,7 @@ python eval_run_online.py  \
 
 ## Model Zoo🦒🏛️{#zoo}
 
-Here is the list of different module versions of OPUS-PLLM. The deployment of OPUS-PLLM requires weight files from four components: **Base Model Weight**, **corresponding LoRA weights**, **Switch Projector Weights**, and **Cross-Modal Adapter Weights**. Among these, the **Cross-Modal Adapter Weights** are universal and can be downloaded [here]([YaoYao12138/OpusLlama · Hugging Face](https://huggingface.co/YaoYao12138/OpusLlama)) 👈, while the other three must be mutually compatible.
+Here is the list of different module versions of OPUS-PLLM. The deployment of OPUS-PLLM requires weight files from four components: **Base Model Weight**, **corresponding LoRA weights**, **Switch Projector Weights**, and **Cross-Modal Adapter Weights**. Among these, the **Cross-Modal Adapter Weights** are universal and can be downloaded [here](https://huggingface.co/YifanXu24/OPUS-PLLM-CSTP) 👈, while the other three must be mutually compatible.
 
 We provide four sets of model weights:
 
