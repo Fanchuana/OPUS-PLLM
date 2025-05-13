@@ -61,7 +61,7 @@ Also, 17 test datasets of our benchmark are all open-sourced [here](https://hugg
 
 ## Steps to Reproduce the Inference Result 
 
-- At first, please ensure you have prepared all the prerequisite environments as specified in the **Dependencies** section. If not, please follow the instructions step by step in the **Dependencies** section.
+- At first, please ensure you have prepared all the prerequisite environments as specified in the **[Dependencies](#dependencies)** section. If not, please follow the instructions step by step in the **Dependencies** section.
 - Download the corresponding test sets from our 🤗  [Hugging Face Repo](https://huggingface.co/YifanXu24/OPUS-InstructionCorpus-Benchmark)  and maintain their original name. The naming of the test dataset will affect how the automatic metrics are calculated. Specifically, test sets containing **"GO"** in their names will be processed through a dedicated pipeline that calculates **precision**, **recall**, and **F1 score** between the generated text and ground truth. The same applies to the others.
 
 If you wish to experience OPUS-PLLM's efficient and accurate protein annotation capabilities, or to evaluate its performance on our provided functional annotation benchmark, please follow these steps:
