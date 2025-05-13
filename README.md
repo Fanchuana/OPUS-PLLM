@@ -132,7 +132,7 @@ python eval_run_online.py  \
 
 
 
-## Model Zoo🦒🏛️{#zoo}
+## Model Zoo🦒🏛️
 
 Here is the list of different module versions of OPUS-PLLM. The deployment of OPUS-PLLM requires weight files from four components: **Base Model Weight**, **corresponding LoRA weights**, **Switch Projector Weights**, and **Cross-Modal Adapter Weights**. Among these, the **Cross-Modal Adapter Weights** are universal and can be downloaded [here](https://huggingface.co/YifanXu24/OPUS-PLLM-CSTP) 👈, while the other three must be mutually compatible.
 
