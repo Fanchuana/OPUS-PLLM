@@ -57,7 +57,7 @@ As mentioned in the article, we have open-sourced two versions of the dataset fo
 
 Both two versions of training data are available for download through our Huggingface training dataset repos [OPUS-InstructionCorpus](https://huggingface.co/datasets/YifanXu24/OPUS-InstructionCorpus) 👈🤗 and [OPUS-InstructionCorpus-Evol](https://huggingface.co/datasets/YifanXu24/OPUS-InstructionCorpus-Evol) 👈🤗.  
 
-Also, 17 test datasets of our benchmark are all open-sourced [here]([YifanXu24/OPUS-InstructionCorpus-Benchmark · Hugging Face](https://huggingface.co/YifanXu24/OPUS-InstructionCorpus-Benchmark)) 👈.  We gratefully acknowledge the teams that contributed some parts of the original test sets(OPI-team, Clean-team, Deeploc-team).
+Also, 17 test datasets of our benchmark are all open-sourced [here](https://huggingface.co/YifanXu24/OPUS-InstructionCorpus-Benchmark) 👈.  We gratefully acknowledge the teams that contributed some parts of the original test sets(OPI-team, Clean-team, Deeploc-team).
 
 ## Steps to Reproduce the Inference Result 
 
