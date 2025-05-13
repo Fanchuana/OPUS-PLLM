@@ -66,7 +66,7 @@ Also, 17 test datasets of our benchmark are all open-sourced [here](https://hugg
 
 If you wish to experience OPUS-PLLM's efficient and accurate protein annotation capabilities, or to evaluate its performance on our provided functional annotation benchmark, please follow these steps:
 
-- Download the Base Model Weights and its corresponding Lora weights, Switch Projector Weights and Cross-Modal Adapter Weights. Base Model Weights can be downloaded from their official 🤗 Hugging Face Repo. Others can be downloaded on our 🤗 Hugging Face Repo. We have provided the corresponding repository URLs in [Model Zoo](#zoo)  Section🦒🏛️, please select the appropriate pairing scheme.
+- Download the Base Model Weights and its corresponding Lora weights, Switch Projector Weights and Cross-Modal Adapter Weights. Base Model Weights can be downloaded from their official 🤗 Hugging Face Repo. Others can be downloaded on our 🤗 Hugging Face Repo. We have provided the corresponding repository URLs in [Model Zoo](#model-zoo🦒🏛️)  🦒🏛️Section, please select the appropriate pairing scheme.
 - For example, if you choose to validate annotation model with llama3-8B🐪, you can download llama3-8B-Base from [here](https://huggingface.co/meta-llama/Meta-Llama-3-8B) 👈. Then, download its corresponding Lora weights, Switch Projector Weights and Cross-Modal Adapter Weights from [here](https://huggingface.co/YifanXu24/OPUS-PLLM-Llama3-8B-Base) 👈.
 - Navigate to the inference path: `OPUS-PLLM/multi_modality_model/multi_modality_v1/eval/`, and you can reproduce results by running:
 
