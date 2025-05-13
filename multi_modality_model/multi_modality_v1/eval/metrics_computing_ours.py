@@ -45,14 +45,12 @@ def return_our_metrics(original_result, json_path, input_model=None):
         exactly_match = sum([result[6] for result in results]) / len(results)
         sub_match = sum([result[7] for result in results]) / len(results)
 
-        # 宏平均
         macro_precision = sum(precisions) / len(precisions)
         macro_recall = sum(recalls) / len(recalls)
         macro_f1_score = sum(f1)/len(f1)
         total_tp = sum(result[3] for result in results)
         total_fp = sum(result[4] for result in results)
         total_fn = sum(result[5] for result in results)
-        # 微平均
         micro_precision = total_tp / (total_tp + total_fp) if (total_tp + total_fp) > 0 else 0
         micro_recall = total_tp / (total_tp + total_fn) if (total_tp + total_fn) > 0 else 0
         micro_f1_score = 2 * micro_precision * micro_recall / (micro_precision + micro_recall)
