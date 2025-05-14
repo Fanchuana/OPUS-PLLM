@@ -1,4 +1,4 @@
-# Opus-PLLM: Advancing Generative Large Language Models Toward Discriminative Performance in Protein Function Prediction
+# OPUS-PLLM: Advancing Generative Large Language Models Toward Discriminative Performance in Protein Function Prediction
 
 Here is the official codebase for OPUS-PLLM: Advancing Generative Large Language Models Toward Discriminative Performance in Protein Function Prediction.
 
