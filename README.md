@@ -13,23 +13,23 @@ conda create -n OpusPLLM python=3.10
 conda activate OpusPLLM
 ```
 
-2.Install most packages required through requirements.txt.
-
-```shell
-pip install -r requirements.txt
-```
-
-3.Install **PyTorch with cuda-11.8** using pip following the instructions in [link](https://pytorch.org/get-started/locally/). In this project, we employ **torch==2.4.0** and its corresponding dependencies so you can download it with command:
+2.Install **PyTorch with cuda-11.8** using pip following the instructions in [link](https://pytorch.org/get-started/locally/). In this project, we employ **torch==2.4.0** and its corresponding dependencies so you can download it with command:
 
 ```shell
 pip install torch==2.4.0 torchvision==0.19.0 torchaudio==2.4.0 --index-url https://download.pytorch.org/whl/cu118
 ```
-
 And download xformers:
 
 ```shell
 pip install xformers==0.0.27.post2 --index-url https://download.pytorch.org/whl/cu118
 ```
+
+3.Install most packages required through requirements.txt.
+
+```shell
+pip install -r requirements.txt
+```
+
 
 4.Detect whether your conda support CXXABI1.3.9 using command 
 
