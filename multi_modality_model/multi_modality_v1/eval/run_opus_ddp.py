@@ -16,7 +16,6 @@ from accelerate import Accelerator
 from accelerate.utils import gather_object
 import time
 from metrics_computing_opi import return_opi_metrics
-from metrics_computing_ours import return_our_metrics
 def after_process_output(outputs, conv):
     outputs = outputs.strip()
     try:
@@ -160,7 +159,6 @@ def eval_model(args):
         with open(args.save_path, 'w') as f:
            json.dump(result_to_save, f)
         return_opi_metrics(result_to_save, args.json_path)
-        return_our_metrics(result_to_save, args.json_path)
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument("--model-base-path", type=str, default="facebook/opt-350m")

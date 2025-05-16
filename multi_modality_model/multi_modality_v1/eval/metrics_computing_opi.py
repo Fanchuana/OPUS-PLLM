@@ -6,8 +6,6 @@ from sklearn.metrics import accuracy_score, recall_score, f1_score, precision_sc
 from sklearn.preprocessing import MultiLabelBinarizer
 import nltk
 import sys
-sys.path.insert(0, os.path.abspath("./metrics/bleu")) ##Avoid Download Bleu Module
-nltk.data.path.append("/work/home/cryoem666/nltk_data") ##Avoid Download Nltk Dataset for meteor
 import evaluate
 
 def truncate_sequences(sequences, tokenizer, max_length=500): ##biobert only supports max token length 512
