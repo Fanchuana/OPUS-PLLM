@@ -21,6 +21,6 @@ accelerate launch  run_opus_ddp.py  \
 --model-base-path /path/to/model/path/to/model \
 --adapter-path /path/to/base \
 --is_json True \
---json_path /path/to/file \
+--input_path /path/to/file \
 --save_path /path/to/save \
 --load-4bit True

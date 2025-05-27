@@ -4,7 +4,7 @@ import torch
 from multi_modality_model.multi_modality_v1.constants import IGNORE_INDEX, DEFAULT_SEQ_TOKEN_INDEX, DEFAULT_SEQ_TOKEN, SEQ_PLACEHOLDER
 from multi_modality_model.multi_modality_v1.conversation import conv_vicuna_v0, conv_vicuna_v1
 from multi_modality_model.multi_modality_v1.utils import disable_torch_init
-from multi_modality_model.multi_modality_v1.model.builder import load_pretrained_model
+from multi_modality_model.multi_modality_v1.model.builder import load_pretrained_model,return_cstp_path
 from multi_modality_model.multi_modality_v1.mm_utils import (
     tokenizer_seq_token,
     get_model_name_from_path,
@@ -22,8 +22,9 @@ def eval_model(args):
         conv = conv_vicuna_v1.copy()
     model_name = get_model_name_from_path(args.model_base_path)
     print(f'args:{vars(args)}')
+    cstp_path = return_cstp_path(args.opus_pllm_weights_path,'modality_encoder/modality_encoding_adapter.ckpt')
     tokenizer, model, context_len = load_pretrained_model(
-        args.model_base_path, args.adapter_path, model_name, args.load_8bit, args.load_4bit, accelerator = None, switch_projector_type=args.switch_projector_type, cstp_path=args.cstp_path
+        args.model_base_path, args.opus_pllm_weights_path, model_name, args.load_8bit, args.load_4bit, accelerator = None, switch_projector_type=args.switch_projector_type, cstp_path=cstp_path
     )
 
     # Begin interactive loop
@@ -95,15 +96,15 @@ def eval_model(args):
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument("--model-base-path", type=str, default="facebook/opt-350m")
-    parser.add_argument("--adapter-path", type=str, default=None)
-    parser.add_argument("--temperature", type=float, default=0.3)
-    parser.add_argument("--top_p", type=float, default=0.8)
-    parser.add_argument("--num_beams", type=int, default=3)
-    parser.add_argument("--max_new_tokens", type=int, default=256)
-    parser.add_argument("--load-4bit", type=bool, default=False)
-    parser.add_argument("--load-8bit", type=bool, default=False)
+    parser.add_argument("--opus-pllm-weights-path", type=str, default=None, required=True)
+    parser.add_argument("--is_json", type=bool, default=True)
+    parser.add_argument("--temperature", type=float, default=0.1)
+    parser.add_argument("--top_p", type=float, default=0.7)
+    parser.add_argument("--num_beams", type=int, default=1)
+    parser.add_argument("--max_new_tokens", type=int, default=32)
     parser.add_argument("--switch_projector_type", type=str, default='mlp2x_gelu')
-    parser.add_argument("--cstp_path", type=str, default=None)
+    parser.add_argument("--load-4bit", type=bool, default=True)
+    parser.add_argument("--load-8bit", type=bool, default=False)
     parser.add_argument("--system_version", type=str, default='v0')
     args = parser.parse_args()
 

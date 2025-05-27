@@ -5,7 +5,7 @@ from multi_modality_model.multi_modality_v1.constants import IGNORE_INDEX, DEFAU
     SEQ_PLACEHOLDER
 from multi_modality_model.multi_modality_v1.conversation import conv_vicuna_v0, conv_vicuna_v1
 from multi_modality_model.multi_modality_v1.utils import disable_torch_init
-from multi_modality_model.multi_modality_v1.model.builder import load_pretrained_model
+from multi_modality_model.multi_modality_v1.model.builder import load_pretrained_model, return_cstp_path
 from multi_modality_model.multi_modality_v1.mm_utils import (
     tokenizer_seq_token,
     get_model_name_from_path,
@@ -53,9 +53,10 @@ def eval_model(args):
     # Model
     accelerator = Accelerator()
     model_name = get_model_name_from_path(args.model_base_path)
+    cstp_path = return_cstp_path(args.opus_pllm_weights_path, 'modality_encoder/modality_encoding_adapter.ckpt')
     tokenizer, model, context_len = load_pretrained_model(
-        args.model_base_path, args.adapter_path, model_name, args.load_8bit, args.load_4bit, accelerator=accelerator,
-        switch_projector_type=args.switch_projector_type,cstp_path=args.cstp_path
+        args.model_base_path, args.opus_pllm_weights_path, model_name, args.load_8bit, args.load_4bit, accelerator=accelerator,
+        switch_projector_type=args.switch_projector_type, cstp_path=cstp_path
     )
     chat_template = """
     {% for message in messages %}
@@ -82,8 +83,8 @@ def eval_model(args):
         You can only output one option from A), B), C), D) with format 'The correct answer is' without explanation."""
 
     if args.is_json is not None:
-        if args.json_path is not None:
-            qs = json.load(open(args.json_path, "r"))
+        if args.input_path is not None:
+            qs = json.load(open(args.input_path, "r"))
             if type(qs) is list:
                 length = len(qs)
                 qs = qs[:length]
@@ -210,31 +211,27 @@ def eval_model(args):
 
         compare_answers(result_to_save)
         print(f"entries/sec: {length / timediff}, time elapsed: {timediff}")
-        print(f'Inferece Score of Dataset: {args.json_path}')
-        print(f'Saving Inference Result of model: {args.adapter_path} to {args.save_path}...')
+        print(f'Inferece Score of Dataset: {args.input_path}')
+        print(f'Saving Inference Result of model: {args.opus_pllm_weights_path} to {args.save_path}...')
         with open(args.save_path, 'w') as f:
             json.dump(result_to_save, f)
-        '''
-        return_opi_metrics(result_to_save, args.json_path)
-        return_our_metrics(result_to_save, args.json_path)
-        '''
+
 
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument("--model-base-path", type=str, default="facebook/opt-350m")
-    parser.add_argument("--adapter-path", type=str, default=None)
-    parser.add_argument("--is_json", type=bool, default=True, required=False)
-    parser.add_argument("--json_path", type=str, default=False)
-    parser.add_argument("--save_path", type=str, default=False)
+    parser.add_argument("--opus-pllm-weights-path", type=str, default=None, required=True)
+    parser.add_argument("--is_json", type=bool, default=True)
+    parser.add_argument("--input_path", type=str, default=False, required=True)
+    parser.add_argument("--save_path", type=str, default=False, required=True)
     parser.add_argument("--temperature", type=float, default=0.1)
     parser.add_argument("--top_p", type=float, default=0.7)
     parser.add_argument("--num_beams", type=int, default=1)
     parser.add_argument("--max_new_tokens", type=int, default=50)
     parser.add_argument("--switch_projector_type", type=str, default='mlp2x_gelu')
-    parser.add_argument("--load-4bit", type=bool, default=False)
+    parser.add_argument("--load-4bit", type=bool, default=True)
     parser.add_argument("--load-8bit", type=bool, default=False)
-    parser.add_argument("--cstp_path", type=str, default=None)
     args = parser.parse_args()
 
     eval_model(args)

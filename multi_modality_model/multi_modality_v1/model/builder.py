@@ -16,7 +16,11 @@ import torch
 from multi_modality_model.multi_modality_v1.model import *
 from peft import PeftModel, PeftConfig
 import transformers
-
+def return_cstp_path(args_path, file_name):
+    if args_path[-1]=='/':
+        return f"{args_path}{file_name}"
+    else:
+        return f"{args_path}/{file_name}"
 class model_args:
     device = 'cuda'
     has_protein_encoder = True
@@ -29,7 +33,7 @@ def load_pretrained_model(
     load_8bit=False,
     load_4bit=False,
     accelerator=None,
-    switch_projector_type='mlp2x_gelu',  # 改为仅关键字参数
+    switch_projector_type='mlp2x_gelu',
     cstp_path = True,
     **kwargs
 ):
@@ -100,11 +104,11 @@ def load_pretrained_model(
 
         if adapter_path is not None:
             # Initialize the PEFT model with the base model
-            peft_model = PeftModel.from_pretrained(model, adapter_path)
+            peft_model = PeftModel.from_pretrained(model, return_cstp_path(adapter_path,'lora_adapter'))
             # Merge and unload the LoRA weights into the base model
             model = peft_model.merge_and_unload()
             model_args.hidden_size = model.config.hidden_size
-            model_args.pretrain_switch_projector_ckpt = f'{adapter_path}non_lora_trainables.bin'
+            model_args.pretrain_switch_projector_ckpt = return_cstp_path(adapter_path,'modality_refinement_projector/modality_refinement_projection.bin')
             print(f'peft model loaded!')
             print(f'Switch Projector path:{model_args.pretrain_switch_projector_ckpt}')
             print(f'Lora Path:{adapter_path}')
