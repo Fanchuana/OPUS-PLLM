@@ -57,7 +57,7 @@ Also, 17 test datasets of our benchmark are all open-sourced [here](https://hugg
 
 ## 🔋 Model Weights and Structure
 
-<img src="framework.png" alt="图示" width="600" height="700"/>
+<img src="images/framework.png" alt="图示" width="600" height="700"/>
 
 To evaluate or use OPUS-PLLM, download the following components:
 
