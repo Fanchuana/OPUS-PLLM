@@ -25,6 +25,5 @@ def build_protein_projector(cstp_chackpoint_path):
     )
     for param in cstp_model.parameters():
         param.requires_grad = False
-    print(cstp_model)
     cstp_model.eval()
     return cstp_model

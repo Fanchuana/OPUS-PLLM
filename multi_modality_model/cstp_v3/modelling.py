@@ -21,7 +21,7 @@ class ProteinSeqEmbeddingExtractor():
         self.model, self.alphabet = esm.pretrained.esm2_t33_650M_UR50D()
         if ckpt!=None:
             # 加载 checkpoint
-            print(f"======checkpoint {ckpt}被调用=====")
+            #print(f"======checkpoint {ckpt}被调用=====")
             checkpoint = torch.load(ckpt, map_location="cpu")['model']
             all_params = list(checkpoint.keys())
             # 筛选出属于 ESM2 模型的参数（即以 'protein_model.model.' 开头的参数）
@@ -29,7 +29,7 @@ class ProteinSeqEmbeddingExtractor():
                            param.startswith('protein_model.model.')}
             self.model.load_state_dict(esm2_params, strict=False)
         else:
-            print("======ESM2被调用=====")
+            #print("======ESM2被调用=====")
             self.model, self.alphabet = esm.pretrained.esm2_t33_650M_UR50D()
         self.batch_converter = self.alphabet.get_batch_converter()
         self.model.eval().cuda() # Disable dropout

@@ -109,9 +109,11 @@ def load_pretrained_model(
             model = peft_model.merge_and_unload()
             model_args.hidden_size = model.config.hidden_size
             model_args.pretrain_switch_projector_ckpt = return_cstp_path(adapter_path,'modality_refinement_projector/modality_refinement_projection.bin')
+            '''
             print(f'peft model loaded!')
             print(f'Switch Projector path:{model_args.pretrain_switch_projector_ckpt}')
             print(f'Lora Path:{adapter_path}')
+            '''
         else:
             print(f'No adapter path!')
         # Move the model to the desired device

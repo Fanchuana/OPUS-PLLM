@@ -44,8 +44,8 @@ class OpusMetaModel:
 
 
     def initialize_protein_modules(self, model_args, fsdp=None):
-        print(f'receive protein projector ckpt:{model_args.pretrain_protein_projector_ckpt}')
-        print(f'receive switch projector ckpt:{model_args.pretrain_switch_projector_ckpt}')
+        #print(f'receive protein projector ckpt:{model_args.pretrain_protein_projector_ckpt}')
+        #print(f'receive switch projector ckpt:{model_args.pretrain_switch_projector_ckpt}')
         self.config.device = model_args.device
         self.config.has_protein_encoder = model_args.has_protein_encoder
         self.config.has_switch_projector = model_args.has_switch_projector
@@ -64,11 +64,11 @@ class OpusMetaModel:
         #print(f'protein_encoder:{vars(protein_encoder)}')
         #print(f'self:{vars(self)}')
         if model_args.pretrain_protein_projector_ckpt is not None:  # 是否有projector
-            print(f'pretrain_protein_projector_ckpt_path:{model_args.pretrain_protein_projector_ckpt}')
+            #print(f'pretrain_protein_projector_ckpt_path:{model_args.pretrain_protein_projector_ckpt}')
             self.protein_projector = build_protein_projector(model_args.pretrain_protein_projector_ckpt)
             self.protein_projector = self.protein_projector.to(self.config.device)
         else:
-            print('Receive No protein projector, directly use esm embedding!')
+            #print('Receive No protein projector, directly use esm embedding!')
             import torch.nn as nn
             class IdentityModule(nn.Module):
                 def forward(self, x):
@@ -81,7 +81,7 @@ class OpusMetaModel:
         if getattr(model_args, 'has_switch_projector', False):
             self.switch_projector = build_switch_projector(model_args)
             if model_args.pretrain_switch_projector_ckpt is not None:
-                print(f'pretrain_switch_projector_ckpt_path:{model_args.pretrain_switch_projector_ckpt}')
+                #print(f'pretrain_switch_projector_ckpt_path:{model_args.pretrain_switch_projector_ckpt}')
                 switch_projector_weights = torch.load(model_args.pretrain_switch_projector_ckpt, map_location='cpu')
                 def get_w(weights, keyword):
                     return {k.split(keyword + '.')[1]: v for k, v in weights.items() if keyword in k}
