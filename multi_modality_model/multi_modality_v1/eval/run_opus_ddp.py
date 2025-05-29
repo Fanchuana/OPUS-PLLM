@@ -46,10 +46,7 @@ def left_pad_sequence(sequences, padding_value, batch_first=False):
 
 def eval_model(args):
     # Model
-    if args.system_version == 'v0':
-        conv = conv_vicuna_v0.copy()
-    else:
-        conv = conv_vicuna_v1.copy()
+    conv = conv_vicuna_v0.copy()
     accelerator = Accelerator()
     model_name = get_model_name_from_path(args.model_base_path)
     print(f'args:{vars(args)}')
@@ -163,7 +160,6 @@ if __name__ == "__main__":
     parser.add_argument("--switch_projector_type", type=str, default='mlp2x_gelu')
     parser.add_argument("--load-4bit", type=bool, default=True)
     parser.add_argument("--load-8bit", type=bool, default=False)
-    parser.add_argument("--system_version", type=str, default='v1')
     args = parser.parse_args()
 
     eval_model(args)
