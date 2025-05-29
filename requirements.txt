@@ -18,3 +18,4 @@ scipy~=1.15.3
 setuptools~=75.5.0
 tqdm~=4.67.0
 transformers~=4.46.3
+bert_score~=0.3.13

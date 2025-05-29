@@ -7,7 +7,8 @@ from sklearn.preprocessing import MultiLabelBinarizer
 import nltk
 import sys
 import evaluate
-
+sys.path.insert(0, os.path.abspath("./metrics/bleu"))
+sys.path.insert(0, os.path.abspath("./metrics/bertscore"))
 def truncate_sequences(sequences, tokenizer, max_length=500): ##biobert only supports max token length 512
     truncated_sequences = []
     length_list = []
@@ -69,30 +70,6 @@ def calculate_bertscore(output, target):
     }
 
 
-def calculate_pub_bert_score(output, target):
-    from transformers import AutoTokenizer
-    bertscore = evaluate.load("./metrics/bertscore")
-    print('Load BERTSCORE with PubMedBERT')
-
-    tokenizer = AutoTokenizer.from_pretrained("microsoft/BiomedNLP-PubMedBERT-base-uncased-abstract")  # [2,3](@ref)
-
-    output = truncate_sequences(output, tokenizer)
-    target = truncate_sequences(target, tokenizer)
-
-
-    bert_results = bertscore.compute(
-        predictions=output,
-        references=target,
-        model_type="microsoft/BiomedNLP-PubMedBERT-base-uncased-abstract",  # [3](@ref)
-        num_layers=12,
-        lang="en"
-    )
-
-    return {
-        "precision": sum(bert_results["precision"]) / len(bert_results["precision"]),
-        "recall": sum(bert_results["recall"]) / len(bert_results["recall"]),
-        "f1": sum(bert_results["f1"]) / len(bert_results["f1"])
-    }
 
 
 def calculate_meteor(output, target):
@@ -157,22 +134,17 @@ def process_data(data, json_file_path):
 
 
         results.update({
-            'ROUGEScore': {'rouge1':round(rouge_score['rouge1'], 4),
-                           'rouge2':round(rouge_score['rouge2'],4),
-                           'rougel':round(rouge_score['rougeL'],4),
-                           'rougeLsum':round(rouge_score['rougeLsum'],4)} if rouge_score!=None else None,
-            'BLEU': round(bleu_score, 4) if bleu_score!=None else None,
+            'ROUGEScore': {'rouge1':float(round(rouge_score['rouge1'], 4)),
+                           'rouge2':float(round(rouge_score['rouge2'],4)),
+                           'rougel':float(round(rouge_score['rougeL'],4)),
+                           'rougeLsum':float(round(rouge_score['rougeLsum'],4))} if rouge_score!=None else None,
+            'BLEU': float(round(bleu_score, 4)) if bleu_score!=None else None,
             'BERTScore': {
-                'precision': round(bert_score['precision'], 4),
-                'recall': round(bert_score['recall'], 4),
-                'f1': round(bert_score['f1'] , 4),
+                'precision': float(round(bert_score['precision'], 4)),
+                'recall': float(round(bert_score['recall'], 4)),
+                'f1': float(round(bert_score['f1'] , 4)),
             } if bert_score!=None else None,
-            'PubBertScore':{
-                'precision': round(pub_bertscore['precision'], 4),
-                'recall': round(pub_bertscore['recall'], 4),
-                'f1': round(pub_bertscore['f1'] , 4),
-            } if pub_bertscore!=None else None,
-            'METEOR': round(meteor_score, 4) if meteor_score!=None else None,
+            'METEOR': float(round(meteor_score, 4)) if meteor_score!=None else None,
         })
     if accuracies:
         results['Accuracy'] = round(sum(accuracies) / len(accuracies), 4)
