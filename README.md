@@ -115,8 +115,7 @@ The terminal will prompt:
   `MPYFAQRLYNTCKASFSSDGPITEDALEKVRNVLEKIKPSDVGIEQDAQLARSRSGPLNERNGSNQSPPAIKYLHLHECDSFSIGIFCMPPSSMIPLHNHPGMTVLSKLVYGSMHVKSYDWLEPQLTEPEDPSQARPAKLVKDTEMTAQSPVTTLYPKSGGNIHCFKAITHCAILDILAPPYSSEHDRHCTYFRKSRREDLPGELEVDGEVVTDVTWLEEFQPPDDFVIRRIPYRGPVIRT`
 
 The model will return output like:  
-
-**`cytosol; nucleus; cysteine dioxygenase activity; iron ion binding; cellular response to hypoxia; detection of hypoxia; response to hypoxia`**
+`cytosol; nucleus; cysteine dioxygenase activity; iron ion binding; cellular response to hypoxia; detection of hypoxia; response to hypoxia`
 
 ### 🔄 OPUS-PLLM-Llama3-8B-Evol
 
@@ -163,18 +162,18 @@ Our model is an autoregressive language model, in which each token is generated 
 ## Acknowledgements
 
 
-# Citing OPUS-PLLM
+## Citing OPUS-PLLM
 
 If you find this project helpful, please cite our paper:
 
 ```shell
 @article{opuspllm2025,
   title={OPUS-PLLM: Advancing Generative Large Language Models Toward Discriminative Performance in Protein Function Prediction},
-  author={Ying Lv1†, Yifan Xu2†, Gang Xu, and Jianpeng Ma},
+  author={Ying Lv†, Yifan Xu†, Gang Xu, and Jianpeng Ma},
   journal={},
   year={2025}
 }
 ```
-# Contact
+## Contact
 
 For any questions or issues, open an issue or contact Ying Lv (lvying@pjlab.org.cn) and Yifan Xu (yfxu24@m.fudan.edu.cn)
