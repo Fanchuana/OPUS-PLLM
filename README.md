@@ -155,6 +155,8 @@ We provide four models: **OPUS-PLLM-Llama3-8B**, **OPUS-PLLM-Galactica-1.3B**, a
 | OPUS-PLLM-Llama3-8B-Evol |    Evol    | [Llama3-8B-Instruct](https://huggingface.co/meta-llama/Meta-Llama-3-8B-Instruct)🐪 | [Link🤗](https://huggingface.co/YifanXu24/OPUS-PLLM-Llama3-8B-Evol) |
 
 
+##Note on Inference Variability
+Our model is an autoregressive language model that generates the next token by sampling from a probability distribution over the vocabulary. While the model estimates the likelihood of all possible next tokens, the final token is selected via probabilistic sampling. As a result, repeated inference runs on the same input may yield slightly different outputs or timing performance. This inherent non-determinism in token sampling, coupled with potential variations in hardware resource scheduling (e.g., GPU memory usage), may lead to minor fluctuations in performance. Therefore, the results you obtain may not exactly match the numbers reported in the paper, though they should be within a comparable range.
 
 ## Acknowledgements
 
