@@ -71,7 +71,7 @@ To evaluate or use OPUS-PLLM, download the following components:
  
 Except for the base model, the remaining three types of weights can be downloaded from our opud-pllm-weights [Model Zoo](#model-zoo%EF%B8%8F) 👈.
 
-## Result
+## Results
 <img src="images/Results.png" alt="图示" width="600" height="700"/>
 Performance comparison of different models across five protein function prediction tasks. a-e) OPUS-PLLM versus state-of-the-art generative LLMs on: a) two subcellular localization datasets, b) three UniProt keyword datasets, c) three GO term datasets, d) two EC number datasets, and e) three functional description generation datasets. f) Some examples from functional description generation tasks. g-j) OPUS-PLLM versus discriminative approaches based on different PLM representations (ESM2, ProtT5, Ankh) on: g) two subcellular localization datasets, h) three UniProt keyword datasets, i) three GO term datasets, and j) two EC number datasets.
 
