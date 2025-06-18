@@ -53,7 +53,7 @@ As mentioned in the article, we have two versions of the dataset for training:  
 
 Upon acceptance of the paper, both training datasets will be released via our Huggingface dataset repos [OPUS-InstructionCorpus](https://huggingface.co/datasets/YifanXu24/OPUS-InstructionCorpus) 👈🤗 and [OPUS-InstructionCorpus-Evol](https://huggingface.co/datasets/YifanXu24/OPUS-InstructionCorpus-Evol) 👈🤗.  
 
-Also, 17 test datasets of our benchmark are all open-sourced [here](https://huggingface.co/YifanXu24/OPUS-InstructionCorpus-Benchmark) 👈.  We gratefully acknowledge the teams that contributed some parts of the original test sets(OPI-team, Clean-team, Deeploc-team).
+Also, 18 test datasets of our benchmark are all open-sourced [here](https://huggingface.co/YifanXu24/OPUS-InstructionCorpus-Benchmark) 👈.  We gratefully acknowledge the teams that contributed some parts of the original test sets(OPI-team, Clean-team, Deeploc-team).
 
 ## 🔋 Model Weights and Structure
 
