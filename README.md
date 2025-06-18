@@ -173,7 +173,7 @@ If you find this project helpful, please cite our paper:
 ```shell
 @article{opuspllm2025,
   title={OPUS-PLLM: Advancing Generative Large Language Models Toward Discriminative Performance in Protein Function Prediction},
-  author={Ying Lv†, Yifan Xu†, Gang Xu, and Jianpeng Ma},
+  author={Ying Lv†, Yifan Xu†, Gang Xu*, and Jianpeng Ma*},
   journal={},
   year={2025}
 }
