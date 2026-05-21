@@ -1,7 +1,7 @@
-# OPUS-PLLM: Advancing Generative Large Language Models Toward Discriminative Performance in Protein Function Prediction
+OPUS-PLLM: Advancing Generative Large Language Models Toward Discriminative Performance in Protein Function Prediction
+> 🎉 **News (May 2026):** We are thrilled to announce that our paper *"Advancing Generative Large Language Models Toward Discriminative Performance in Protein Function Prediction"* has been accepted for publication in ***Genome Biology*** (2026). The final version is now available at [Springer Link](https://link.springer.com/article/10.1186/s13059-026-04109-8)👈🤗. We sincerely thank the editors, reviewers, and the community for their invaluable feedback and support!
 
 Here is the official codebase for OPUS-PLLM: Advancing Generative Large Language Models Toward Discriminative Performance in Protein Function Prediction.
-
 
 ## 🧩 Dependencies
 
@@ -171,11 +171,13 @@ Our model is an autoregressive language model, in which each token is generated 
 If you find this project helpful, please cite our paper:
 
 ```shell
-@article{opuspllm2025,
+@article{opuspllm2026,
   title={OPUS-PLLM: Advancing Generative Large Language Models Toward Discriminative Performance in Protein Function Prediction},
   author={Ying Lv†, Yifan Xu†, Gang Xu*, and Jianpeng Ma*},
-  journal={},
-  year={2025}
+  journal = {Genome Biology},
+  year = {2026},
+  doi = {10.1186/s13059-026-04109-8},
+  note = {Open access}
 }
 ```
 ## Contact
