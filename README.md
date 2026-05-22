@@ -177,7 +177,6 @@ If you find this project helpful, please cite our paper:
   journal = {Genome Biology},
   year = {2026},
   doi = {10.1186/s13059-026-04109-8},
-  note = {Open access}
 }
 ```
 ## Contact
